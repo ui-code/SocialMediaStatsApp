@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Stats | theuicode.com</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container p-0">
+        <div class="d-flex flex-row justify-content-between px-4 pt-5 pb-4 align-items-center">
+            <div>
+                <i class="fas fa-minus"></i>
+                <i class="fas fa-minus menu-icon position-relative"></i>
+            </div>
+            <span class="title">STATS</span>
+            <i class="fas fa-search"></i>
+        </div>
+        <div class="px-3 d-flex flex-row justify-content-between period-menu">
+            <span class="px-4 py-2 active">Month</span>
+            <span class="px-4 py-2 ">Week</span>
+            <span class="px-4 py-2">Day</span>
+        </div>
+        <div class="mt-3 d-flex flex-row month-menu justify-content-center">
+            <span class="px-3">Dec</span>
+            <span class="px-3 active">Jan</span>
+            <span class="px-3">Feb</span>
+        </div>
+        <div class="d-flex flex-row justify-content-center mt-4">
+            <div class="d-flex flex-column align-items-center kpi-bg w-50 py-4">
+                <div class="px-4 mb-2 w-100 d-flex flex-row justify-content-between align-items-center">
+                    <i class="fas fa-caret-up"></i>
+                    <span class="kpi-label">75%</span>
+                </div>
+                <div id="likesPie" class="d-flex flex-row justify-content-center"></div>
+                <span class="kpi">165</span>
+                <span class="kpi-label">Likes</span>
+            </div>
+        </div>
+        <div class="d-flex flex-row linechart-bg justify-content-center">
+            <div id="lineChart"></div>
+        </div>
+    </div>
+</body>
+
+
+<script>
+    //likes pie chart
+    let pieOptions = {
+        series: [25, 75],
+        chart: {
+            width: 100,
+            type: 'pie',
+        },
+        dataLabels: {
+            enabled: false,
+        },
+        legend: {
+            show: false
+        },
+        colors: ['#010101', '#C7F4D1'],
+        stroke: {
+            show: false
+        }
+    };
+
+    let pieChart = new ApexCharts(document.querySelector("#likesPie"), pieOptions);
+    pieChart.render();
+
+    //line chart
+    let lineOptions = {
+        colors: ["#EFF7F4"],
+        series: [{
+            data: [1, 8, 6, 7, 10, 8, 7]
+        }],
+        chart: {
+            height: 235,
+            type: 'line',
+            fontFamily: 'Helvetica, Arial, sans-serif',
+            toolbar: {
+                show: false,
+            },
+            zoom: {
+                enabled: false
+            },
+            dropShadow: {
+                enabled: true,
+                enabledOnSeries: undefined,
+                top: 30,
+                left: 0,
+                blur: 12,
+                color: '#000',
+                opacity: 0.25
+            },
+        },
+        dataLabels: {
+            enabled: false,
+        },
+        stroke: {
+            curve: 'smooth',
+            lineCap: 'butt',
+        },
+        grid: {
+            padding: {
+                top: 50,
+                right: 20,
+                bottom: 20,
+                left: 20
+            },
+            borderColor: "#AFE1C3",
+            show: true,
+            xaxis: {
+                lines: {
+                    show: true
+                }
+            },
+            yaxis: {
+                lines: {
+                    show: false
+                }
+            },
+        },
+        xaxis: {
+            axisBorder: {
+                show: false,
+
+            },
+            axisTicks: {
+                show: false,
+            },
+            labels: {
+                show: true,
+                style: {
+                    fontFamily: 'Montserrat, sans-serif',
+                    fontSize: '12px',
+                    fontWeight: 700
+                }
+            },
+            categories: ['1', '5', '10', '15', '20', '25', '30'],
+        },
+        yaxis: {
+
+            labels: {
+                show: false,
+            }
+        }
+    };
+
+    let chart = new ApexCharts(document.querySelector("#lineChart"), lineOptions);
+    chart.render();
+</script>
+
+</html>
